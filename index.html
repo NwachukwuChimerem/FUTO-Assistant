@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUTO Assistant - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>FUTO Assistant</h2>
+      <ul>
+        <li class="active" data-section="home"><span class="emoji">🏠</span> Dashboard </li>
+        <li data-section="cgpa"><span class="emoji">🎓</span> CGPA Calculator</li>
+        <li data-section="reading"><span class="emoji">📚</span> Reading Plan</li>
+        <li data-section="materials"><span class="emoji">📘</span> Study Materials</li>
+        <li data-section="finance"><span class="emoji">💰</span> Finance Manager</li>
+        <li data-section="profile"><span class="emoji">👤</span> Student Profile</li>
+        <li id="logout"><span class="emoji">🚪</span> Logout</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content">
+      <!-- ===== Dashboard Home (visible by default) ===== -->
+      <section id="home" class="active-section">
+        <div class="home-content">
+          <header class="welcome-header">
+            <h1>Welcome, <span id="studentName">Student</span> </h1>
+            <p>Reg Number: <strong id="regNum">FUTO/2022/12345</strong> |
+               Department: <strong id="dept">Computer Science</strong> |
+               Level: <strong id="level">300L</strong></p>
+          </header>
+           
+          <div class="intro-text">
+  <p>
+    FUTO Assistant is your all-in-one academic companion designed to make student life easier. 
+    From calculating your CGPA to planning your study schedule, managing your finances, and accessing study materials — 
+    everything you need for success is right here on your dashboard.
+  </p>
+</div>
+
+          <div class="home-cards">
+            <div class="home-card" data-target="cgpa">
+              <h3>🎓 CGPA Calculator</h3>
+              <p>Quick shortcut to calculate your semester and cumulative CGPA.</p>
+            </div>
+
+            <div class="home-card" data-target="reading">
+              <h3>📚 Reading Plan</h3>
+              <p>View upcoming study sessions and reminders.</p>
+            </div>
+
+            <div class="home-card" data-target="materials">
+              <h3>📘 Study Materials</h3>
+              <p>Access notes, guides and past questions.</p>
+            </div>
+
+            <div class="home-card" data-target="finance">
+              <h3>💰 Finance Manager</h3>
+              <p>Track allowance, expenses and savings.</p>
+            </div>
+          </div>
+
+          <footer class="dashboard-footer">
+            <p>📢 Tip: Stay consistent - Your effort determines your CGPA! | FUTO Assistant © 2025</p>
+          </footer>
+        </div>
+      </section>
+
+<section id="cgpa">
+  <h2>🎓 CGPA Calculator</h2>
+  <p>Enter the number of courses you offered this semester:</p>
+
+  <div class="input-group">
+    <input type="number" id="courseCount" placeholder="e.g. 8" min="1" />
+    <button id="generateTable">Generate Table</button>
+  </div>
+
+  <div id="cgpaTableContainer"></div>
+  <button id="calcCGPA">Calculate CGPA</button>
+  <p id="resultOutput"></p>
+</section>
+
+<section id="reading" class="reading-section">
+  <h2>📚 Reading Plan</h2>
+  <p>Click on a date and start drafting your reading plan</p>
+  <div id="daysGrid" class="days-grid">
+    <button class="day-btn" data-day="Monday">Monday</button>
+    <button class="day-btn" data-day="Tuesday">Tuesday</button>
+    <button class="day-btn" data-day="Wednesday">Wednesday</button>
+    <button class="day-btn" data-day="Thursday">Thursday</button>
+    <button class="day-btn" data-day="Friday">Friday</button>
+    <button class="day-btn" data-day="Saturday">Saturday</button>
+    <button class="day-btn" data-day="Sunday">Sunday</button>
+  </div>
+
+  <div id="dayPlanner" class="day-planner hidden">
+    <div class="planner-header">
+      <h2 id="dayTitle"></h2>
+      <button id="backToDays" class="btn-secondary">← Back</button>
+    </div>
+
+    <button id="addSessionBtn" class="btn-main">+ Add Reading Session</button>
+
+    <form id="sessionForm" class="session-form hidden">
+      <input type="text" id="sessionSubject" placeholder="Subject / Topic" required>
+      <div class="time-inputs">
+        <input type="time" id="sessionStart" required>
+        <span>to</span>
+        <input type="time" id="sessionEnd" required>
+      </div>
+      <button type="submit" class="btn-main">Save Session</button>
+    </form>
+
+    <ul id="sessionList" class="session-list"></ul>
+  </div>
+</section>
+
+  
+      <!-- ===== Finance Manager ===== -->
+      <section id="finance">
+        <h1>💰 Finance Manager</h1>
+        <form id="financeForm">
+          <input type="text" id="desc" placeholder="Description" required>
+          <input type="number" id="amount" placeholder="Amount (₦)" required>
+          <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <button type="submit">Add Record</button>
+        </form>
+        <ul id="financeList"></ul>
+        <p id="balance"></p>
+      </section>
+
+      <!-- ===== Profile ===== -->
+      <section id="profile">
+        <h1>👤 Student Profile</h1>
+        <p>Name: <strong id="profileName">Student</strong></p>
+        <p>Reg Number: <strong id="profileReg">FUTO/2022/12345</strong></p>
+        <p>Department: <strong id="profileDept">Computer Science</strong></p>
+        <button id="generatePDF">Generate Result PDF</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
+

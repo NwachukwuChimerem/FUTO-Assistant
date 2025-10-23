@@ -1,0 +1,1119 @@
+/* ========== GENERAL ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: url('images/reading.jpg') no-repeat center center/cover;
+  position: relative;
+}
+
+/* Subtle overlay for focus */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 0;
+}
+
+/* ========== DASHBOARD ========== */
+.dashboard {
+  display: flex;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: rgba(10, 25, 47, 0.9);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  text-align: center;
+  color: #00c4ff;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  margin-top: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  flex: 1;
+  margin-top: px;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  margin: 16px 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+/* === Emoji / Icon Styling === */
+
+/* Applies to emojis in sidebar, cards, headers, etc. */
+.sidebar ul li::before,
+.card h2::before,
+.dashboard-footer p::before {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Sidebar emojis (icons) */
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.sidebar ul li span.emoji {
+  font-size: 1.3rem;
+  opacity: 0.85;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.sidebar ul li:hover span.emoji {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* Emojis in cards */
+.home-card h2 span.emoji {
+  font-size: 1.8rem;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  transition: transform 0.25s ease, filter 0.3s ease;
+}
+
+.home-card:hover h2 span.emoji {
+  transform: scale(1.2);
+  filter: brightness(1.3);
+}
+
+/* Emojis in footer or text tips */
+.dashboard-footer p span.emoji {
+  font-size: 1.1rem;
+  margin-right: 5px;
+  opacity: 0.85;
+  vertical-align: middle;
+}
+
+/* Optionally dim emojis slightly to blend with text */
+span.emoji {
+  filter: brightness(0.9);
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background: #00c4ff;
+  color: #0a192f;
+  font-weight: bold;
+}
+
+/* Main content area */
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  color: #fff;
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
+
+/* Sections */
+section {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.active-section {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Dashboard Home */
+.dashboard-home {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 2.5rem 1rem;
+  color: #ffffff;
+}
+
+.welcome-header {
+  /* margin-bottom: 1rem; */
+  /* background: rgba(0, 43, 91, 0.4); semi-transparent overlay matching site theme */
+  padding: 1.2rem 1.8rem;
+  /* border-radius: 14px; */
+  /* backdrop-filter: blur(2px); */
+  /* box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25); */
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+.welcome-header h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #00c4ff; /* bright cyan matches site color */
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 12px rgba(0, 196, 255, 0.45);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+
+.welcome-header p{
+  font-size: 1.05rem;
+  color: #cfe8ff; /* soft, readable bluish-white */
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  line-height: 1.5;
+}
+
+.welcome-header p strong {
+  color: #00c4ff; /* matches the cyan accent from the h1 */
+  font-weight: 600;
+}
+
+.welcome-header strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+
+.intro-text {
+  max-width: 750px;
+  margin: rem auto 2.5rem auto;
+  padding: 1.2rem 1.8rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #eaf6ff; /* soft white-blue for good readability */
+  background: rgba(255, 255, 255, 0.08); /* gentle translucent background */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.intro-text:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 196, 255, 0.35);
+}
+
+
+.intro-text p {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .welcome-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-header p {
+    font-size: 0.95rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+    padding: 1.2rem 1.4rem;
+  }
+}
+
+/* ===========================
+   Home cards layout & styles
+   (use .home-cards and .home-card)
+   =========================== */
+
+/* Grid container for cards */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 3rem;
+  padding: 1rem 2rem;
+  margin-top: 1.25rem;
+  
+}
+
+/* Individual card */
+.home-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);        /* default (light card for readability) */
+  color: #002b5b;                               /* dark-blue text on light card */
+  border-radius: 16px;
+  padding: 1.4rem;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.36s ease, box-shadow 0.36s ease, background 0.36s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.04);
+  gap: 288800px;
+}
+
+/* decorative, subtle overlay (depth) */
+.home-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20,93,160,0.06), rgba(0,43,91,0.08));
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.36s ease;
+}
+
+/* content should be above overlay */
+.home-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* title and paragraph */
+.home-card h3 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.15rem;
+  color: #002b5b;
+  font-weight: 700;
+  transition: color 0.28s ease;
+}
+
+.home-card p {
+  margin: 0;
+  color: #2b4a61;
+  line-height: 1.45;
+  opacity: 0.95;
+  transition: color 0.28s ease, opacity 0.28s ease;
+}
+
+/* hover / focus effect (interactive) */
+.home-card:hover,
+.home-card:focus {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.20);
+  background: linear-gradient(145deg, #1e90ff 0%, #002b5b 100%); /* site-blue gradient */
+  color: #ffffff;
+  outline: none;
+}
+
+/* reveal overlay and change text color on hover */
+.home-card:hover::before,
+.home-card:focus::before {
+  opacity: 1;
+}
+
+.home-card:hover h3,
+.home-card:focus h3 {
+  color: #ffffff;
+}
+
+.home-card:hover p,
+.home-card:focus p {
+  color: rgba(255,255,255,0.95);
+  opacity: 1;
+}
+
+/* subtle glowing border on hover */
+.home-card:hover {
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* keyboard accessibility */
+.home-card:focus {
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25), 0 0 0 4px rgba(30,144,255,0.12);
+}
+
+/* small screens — keep spacing comfortable */
+@media (max-width: 600px) {
+  .home-cards {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .home-card {
+    padding: 1rem;
+  }
+}
+
+/* ======================
+   Dashboard Footer
+   ====================== */
+.dashboard-footer {
+  margin-top: 50px;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #e6f7ff;
+  background: rgba(0, 25, 50, 0.5);
+  border-top: 1px solid rgba(0, 196, 255, 0.3);
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  border-radius: 12px 12px 0 0;
+  letter-spacing: 0.3px;
+  animation: fadeInUp 1s ease;
+}
+
+.dashboard-footer p {
+  margin: 0;
+  line-height: 1.5;
+  color: #cce7ff;
+}
+
+.dashboard-footer p::before {
+  content: " ";
+}
+
+.dashboard-footer p span {
+  color: #00c4ff;
+  font-weight: 600;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional glowing line on hover */
+.dashboard-footer:hover {
+  background: rgba(0, 43, 91, 0.6);
+  box-shadow: 0 -6px 30px rgba(0, 196, 255, 0.25);
+}
+
+/* ========= CGPA SECTION STYLING ========= */
+
+/* ========= CGPA SECTION STYLING ========= */
+/* ==== CGPA CALCULATOR STYLING (UPDATED) ==== */
+#cgpa {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(17, 34, 64, 0.8), rgba(10, 55, 95, 0.7));
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.4s ease;
+  overflow: visible;
+  min-height: fit-content;
+}
+
+#cgpa h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #00bfff;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+#cgpa input,
+#cgpa select {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.6rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+#cgpa input::placeholder {
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+}
+
+/* === Layout for Input & Generate Table Button === */
+#cgpa .input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* For responsiveness on small screens */
+  margin: 1.5rem 0;
+}
+
+#cgpa .input-group input[type="number"] {
+  flex: 1;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+#cgpa .input-group button {
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+/* === Make cgpa section grow dynamically === */
+#cgpa {
+  height: auto !important;
+  min-height: fit-content;
+  transition: all 0.5s ease-in-out;
+}
+
+#cgpaTableContainer {
+  width: 100%;
+  margin-top: 1rem;
+  transition: height 0.5s ease-in-out;
+}
+
+#cgpa table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* === Fix for Placeholder Visibility in Table Inputs === */
+#cgpa input.course-code::placeholder,
+#cgpa input.course-unit::placeholder {
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+}
+
+/* === Ensure Dropdown (Grades) is Visible === */
+#cgpa select.course-grade {
+  color: #fff;
+  background-color: rgba(255,255,255,0.15);
+}
+
+#cgpa select.course-grade option {
+  background-color: #0b1f3b;
+  color: #fff;
+}
+
+/* Center the Calculate Button */
+#calcCGPA {
+  display: none;
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+
+/* Table Styling */
+#cgpa table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+#cgpa th, #cgpa td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#cgpa th {
+  background: rgba(0,191,255,0.15);
+  color: #00bfff;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+#cgpa tr:last-child td {
+  border-bottom: none;
+}
+
+/* Input Fields inside Table */
+#cgpa input.course-code,
+#cgpa input.course-unit,
+#cgpa select.course-grade {
+  text-align: center;
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  outline: none;
+  font-weight: 500;
+}
+
+#cgpa input.course-code:focus,
+#cgpa input.course-unit:focus,
+#cgpa select.course-grade:focus {
+  border-color: #00bfff;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 8px rgba(0,191,255,0.4);
+}
+
+/* Fix dropdown issue (grades visibility) */
+#cgpa select.course-grade {
+  color: #fff;
+  appearance: none;
+  background-color: rgba(255,255,255,0.12);
+}
+
+#cgpa select.course-grade option {
+  background-color: #0e223f;
+  color: #fff;
+}
+
+/* Buttons */
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.7rem 1.3rem;
+  margin-top: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+#generateTable {
+  background: linear-gradient(135deg, #1781b8, #145da0);
+  color: white;
+}
+
+#calcCGPA {
+  background: linear-gradient(135deg, #145da0, #0f7ecb);
+  color: white;
+  display: none;
+}
+
+button:hover:not(.loading) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(23, 129, 184, 0.25);
+}
+
+
+
+/* CGPA Result */
+#resultOutput {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #00bfff;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+/* === PERFORMANCE METRICS SECTION === */
+.performance-box {
+  text-align: center;
+  margin-top: 35px;
+  padding: 30px 25px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  color: #f1f1f1;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Circular Chart Container */
+.circular-chart {
+  display: block;
+  margin: 0 auto 15px auto;
+  transform: rotate(-90deg); /* Start fill from top */
+}
+
+/* Chart background circle */
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 10;
+}
+
+/* Chart dynamic circle */
+.circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.6s ease-in-out;
+  /* filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); */
+}
+
+/* Text inside circular chart */
+.chart-text {
+  /* fill: #ffffff; */
+  font-size: 14px;
+  font-weight: 600;
+  text-anchor: middle;
+  transform: rotate(90deg); /* Correct text orientation */
+}
+
+/* Title (e.g. First Class) */
+.performance-box h3 {
+  margin-top: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+}
+
+/* Remark under chart */
+.performance-box p {
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #eaeaea;
+  line-height: 1.5;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === Performance Button === */
+/* === Performance Button (Refined to match Calculate CGPA) === */
+/* === Performance Button (Centered + Unified Style) === */
+.performance-btn {
+  display: block;
+  margin: 25px auto 0; /* centers it horizontally and adds top spacing */
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #1e88e5; /* Deep blue — same as Calculate CGPA */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(30, 136, 229, 0.25);
+  text-align: center;
+}
+
+.performance-btn:hover:not(:disabled) {
+  background-color: #1565c0; /* slightly darker blue */
+  box-shadow: 0 6px 14px rgba(21, 101, 192, 0.35);
+  transform: translateY(-2px);
+}
+
+.performance-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(21, 101, 192, 0.25);
+}
+
+.performance-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===== Reading Plan Section ===== */
+#reading {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(17, 34, 64, 0.8), rgba(10, 55, 95, 0.7));
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.4s ease;
+  overflow: visible;
+}
+#reading h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #00bfff;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+/* ===== Days Grid Styling ===== */
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;          
+  justify-content: center;  
+  gap: 15px;                
+  max-width: 350px;         
+  margin: 25px auto;       
+}
+
+/* ===== Day Buttons ===== */
+.day-btn {
+  flex: 1 1 calc(50% - 15px);
+  padding: 12px 0;
+  background: linear-gradient(135deg, #1781b8, #145da0);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  cursor: pointer;
+  padding: 0.7rem 1.3rem;
+  margin-top: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.day-btn:hover {
+  background-color: #4b93ff;
+  transform: translateY(-3px);
+}
+
+/* ===== Sunday Alone and Centered ===== */
+.day-btn:last-child {
+  flex-basis: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+#reading button:hover{
+  background: #1e40af;
+  transform: translateY(-2px);
+
+}
+
+#reading h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Reading Form ===== */
+#readingForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+#readingForm input,
+#readingForm button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  outline: none;
+}
+
+#readingForm input {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #cbd5e1;
+}
+
+#readingForm input::placeholder {
+  color: #6b7280;
+}
+
+#readingForm button {
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+#readingForm button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* ===== Reading List ===== */
+#readingList {
+  list-style: none;
+  padding: 0;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Reading Plan Card ===== */
+.reading-plan-card {
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 15px;
+  margin: 15px 0;
+  padding: 20px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+
+.reading-plan-card .card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+
+.reading-plan-card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.timer-display {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #f59e0b;
+  transition: 0.4s;
+}
+
+/* ====== Status Styles ====== */
+.reading-plan-card.upcoming {
+  border-color: #fbbf24;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.25);
+}
+
+.reading-plan-card.active {
+  border-color: #22c55e;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.25);
+}
+
+.reading-plan-card.completed {
+  border-color: #9ca3af;
+  opacity: 0.9;
+}
+
+.reading-plan-card.done {
+  border-color: #3b82f6;
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+
+/* ===== Buttons inside card ===== */
+.card-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-actions button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+
+.card-actions button:hover {
+  background: #1e40af;
+  transform: scale(1.05);
+}
+
+/* ===== Day Planner Container ===== */
+.day-planner {
+  background: #f8faff;
+  border: 1px solid #cddaf7;
+  border-radius: 18px;
+  padding: 25px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.planner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.planner-header h2 {
+  font-size: 1.6rem;
+  color: #2d7ff9;
+  margin: 0;
+}
+
+/* ===== Buttons ===== */
+.btn-main,
+.btn-secondary {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-main {
+  background-color: #2d7ff9;
+  color: #fff;
+}
+
+.btn-main:hover {
+  background-color: #4b93ff;
+}
+
+.btn-secondary {
+  background: #e8edfb;
+  color: #2d7ff9;
+}
+
+.btn-secondary:hover {
+  background: #d4e0fb;
+}
+
+/* ===== Session Form ===== */
+.session-form {
+  background: #ffffff;
+  border: 1px solid #cddaf7;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.session-form input {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid #cddaf7;
+  border-radius: 6px;
+  width: calc(50% - 16px);
+}
+
+.session-form .time-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ===== Session List ===== */
+.session-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.session-list li {
+  background: #ffffff;
+  border: 1px solid #dce6fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.session-list li h4 {
+  margin: 0;
+  color: #2d7ff9;
+  font-size: 1rem;
+}
+
+.session-list li p {
+  margin: 5px 0 0;
+  color: #555;
+}
+
+/* ===== Reading Plan Section ===== */
+.reading-section {
+  text-align: center;
+  margin-top: 40px;
+  background: #e6f0ff; /* soft blue background */
+  border-radius: 16px;
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* ===== Days Grid ===== */
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.day-btn {
+  flex: 1 1 calc(50% - 20px);
+  max-width: 300px;
+  background-color: #2d7ff9;
+  color: white;
+  border: none;
+  padding: 15px 0;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.day-btn:hover {
+  background-color: #4a95ff;
+}
+
+/* ===== Day Planner (when active) ===== */
+.day-planner {
+  background: #f8faff;
+  border: 1px solid #cddaf7;
+  border-radius: 18px;
+  padding: 25px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  z-index: 10;
+}
+
+/* Hide the reading background when planner is active */
+.reading-section.hide-bg {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
